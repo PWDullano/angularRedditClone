@@ -4,64 +4,66 @@
  <meta charset="utf-8">
  <title>Angular Reddit clone</title>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
- <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular.js">
- </script>
- <script type="text/javascript" src="index.js">
- </script>
+ <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.js"></script>
+ <script type="text/javascript" src="index.js"></script>
+ <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="https://necolas.github.io/normalize.css/3.0.3/normalize.css">
 </head>
 <body ng-controller = "MyController">
- <h1>Reddit Clone</h1>
- <p>
-   <input type="text" ng-model="pizzle.title" placeholder='Search'>
- </p>
-
- <i class="fa fa-plus"><input type='submit' value ='Submit Post'ng-click="ToggleForm()"></i>
+  <nav class='header'>
+    <h2>Reddit Clone</h2>
+    <div class ='search'>
+      <i class="fa fa-plus" id='plusIcon'ng-click="ToggleForm()">Submit Post</i>
+      <input class= 'searchBar' type="text" ng-model="pizzle.title" placeholder='Search'>
+    </div>
+  </nav>
 
  <div ng-show="showForm">
    <form ng-submit="submitPost()">
      Title<br>
-     <input type="text" ng-model="title" placeholder="Title">
+     <input class=postForm type="text" ng-model="title" placeholder="Title" required>
      <br>
      Author<br>
-     <input type="text" ng-model="author" placeholder="Author">
+     <input type="text" class=postForm ng-model="author" placeholder="Author" required>
      <br>
      Image URL<br>
-     <input type="text" ng-model="image" placeholder="Image URL">
+     <input type="text" class=postForm ng-model="image" placeholder="Image URL" required>
      <br>
      Description<br>
-     <input type="text" ng-model="description" placeholder="Description">
+     <input type="text" class=postForm ng-model="description" placeholder="Description" required>
      <br>
-     <input type="submit" ng-click='showForm=false' value='Submit Post!'>
+     <input type="submit" ng-click='ToggleForm()' value='Submit Post!'>
    </form>
  </div>
 
- <div ng-repeat = "post in posts | filter:pizzle">
-   <p>{{post.title}} | {{post.votes}}
-   <i ng-click='post.votes = post.votes +1' class="fa fa-level-up"></i>
-   <i ng-click='post.votes = post.votes -1' class="fa fa-level-down"></i>
-   </p>
-   <p>By {{post.author}}</p>
+ <div class='posts' ng-repeat = "post in posts | filter:pizzle | orderBy:'-votes'">
    <img src='{{post.image}}'>
-   <p>{{post.description}}</p>
+   <p class='author'>By {{post.author}}</p>
+   <p class='postTitle'>{{post.title}} | {{post.votes | number}}
+     <i ng-click='post.votes = post.votes +1' class="fa fa-level-up"></i>
+     <i ng-click='post.votes = post.votes -1' class="fa fa-level-down"></i>
+   </p>
+   <p class='postDescription'>{{post.description}}</p>
    <div>
-     <i class="fa fa-calendar">{{post.date}} |</i>
      <div ng-controller='commentController'>
-       <i ng-click='ToggleComment()' class="fa fa-comments">comments |</i>
-       <div ng-show='showComments' ng-repeat = 'comment in comments'>
-         <p>{{comment.comment}}</p>
-         <p>{{comment.commentAuthor}}</p>
-       </div>
+       <i class="fa fa-calendar" id='calendarIcon'>{{post.date | date:"MM/dd/yyyy 'at' h:mma"}} |</i>
+       <i ng-click='ToggleComment()' class="fa fa-comments">comments | {{comment.commentNumber | number}}</i>
        <i class="fa fa-pencil" ng-click="ToggleCommentForm()">add comment</i>
        <div ng-show="newComments">
          <form ng-submit="submitComment()">
            Author<br>
-           <input type="text" ng-model="commentAuthor" placeholder="Username">
+           <input type="text" ng-model="commentAuthor" placeholder="Username" required>
            <br>
            Text<br>
-           <input type="text" ng-model="comment" placeholder="Comment text">
+           <input type="text" ng-model="comment" placeholder="Comment text" required>
            <br>
-           <input type="submit" ng-click='newComments=false' value='Submit Comment!'>
+           <input type="submit" ng-click='ToggleCommentForm()' value='Submit Comment!'>
          </form>
+       </div>
+       <div id ='showComments' ng-show='showComments' ng-repeat = 'comment in comments'>
+         <p>Author: {{comment.commentAuthor}}</p>
+         <p>Comment: {{comment.comment}}</p>
        </div>
     </div>
 

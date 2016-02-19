@@ -1,4 +1,4 @@
-var app = angular.module("patrick", []);
+var app = angular.module("patrick", [ngAnimate]);
 
 
 app.controller("MyController", function($scope){
@@ -12,7 +12,7 @@ app.controller("MyController", function($scope){
 
  $scope.submitPost = function(){
    var post = {};
-   var timeStamp = new Date(Date.now());
+   var timeStamp = Date.now();
    post.votes = 0
    post.date = timeStamp
    post.title = $scope.title;
@@ -44,6 +44,7 @@ app.controller("commentController", function($scope){
 
   $scope.submitComment = function(){
     var comment = {};
+    comment.commentNumber = 0;
     comment.commentAuthor = $scope.commentAuthor
     comment.comment = $scope.comment
     $scope.comments.push(comment);
