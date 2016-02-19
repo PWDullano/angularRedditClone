@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="patrick">
+<head>
+ <meta charset="utf-8">
+ <title>Angular Reddit clone</title>
+ <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular.js">
+ </script>
+ <script type="text/javascript" src="index.js">
+ </script>
+</head>
+<body ng-controller = "MyController">
+ <p>
+   <input type="text" ng-model="pizzle.title" placeholder='Search'>
+ </p>
+
+ <button ng-click="showForm=true"> Submit Post </button>
+
+ <div ng-show="showForm">
+   <form ng-submit="submitPost()">
+     Title<br>
+     <input type="text" ng-model="title" placeholder="Title">
+     <br>
+     Author<br>
+     <input type="text" ng-model="author" placeholder="Author">
+     <br>
+     Image URL<br>
+     <input type="text" ng-model="image" placeholder="Image URL">
+     <br>
+     Description<br>
+     <input type="text" ng-model="description" placeholder="Description">
+     <br>
+     <input type="submit" ng-click='showForm=false' value='Submit Post!'>
+   </form>
+ </div>
+
+   <p>
+     <div ng-repeat = "post in posts | filter:pizzle">
+       <p>{{post.title}}</p>
+       <p>{{post.author}}</p>
+       <img src='{{post.image}}'>
+       <p>{{post.description}}</p>
+       <hr>
+     </div>
+  </p>
+  </body>
+ </html>
