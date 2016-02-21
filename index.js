@@ -15,10 +15,10 @@ app.controller("MyController", function($scope){
    var timeStamp = Date.now();
    post.votes = 0
    post.date = timeStamp
-   post.title = $scope.title;
-   post.author = $scope.author;
-   post.image = $scope.image;
-   post.description = $scope.description;
+   post.title = $scope.title
+   post.author = $scope.author
+   post.image = $scope.image
+   post.description = $scope.description
    $scope.posts.push(post);
    console.log($scope.posts);
    $scope.title = null;
@@ -44,6 +44,8 @@ app.controller("commentController", function($scope){
 
   $scope.submitComment = function(){
     var comment = {};
+    var timeStamp = Date.now();
+    comment.date = timeStamp
     comment.commentNumber = 0;
     comment.commentAuthor = $scope.commentAuthor
     comment.comment = $scope.comment
