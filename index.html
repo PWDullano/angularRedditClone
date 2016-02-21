@@ -4,6 +4,7 @@
  <meta charset="utf-8">
  <title>Angular Reddit clone</title>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
  <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular.js"></script>
  <script type="text/javascript" src="index.js"></script>
  <link rel="stylesheet" href="style.css">
@@ -49,7 +50,7 @@
        <i class="fa fa-calendar" id='calendarIcon'>{{post.date | date:"MM/dd/yyyy 'at' h:mma"}} |</i>
        <i ng-click='ToggleComment()' class="fa fa-comments">comments | {{comment.commentNumber | number}}</i>
        <i class="fa fa-pencil" ng-click="ToggleCommentForm()">add comment</i>
-       <div ng-show="newComments">
+       <div class='newComments' ng-show="newComments">
          <form ng-submit="submitComment()">
            Author<br>
            <input type="text" ng-model="commentAuthor" placeholder="Username" required>
@@ -61,6 +62,7 @@
          </form>
        </div>
        <div id ='showComments'ng-show='showComments' ng-repeat = 'comment in comments'>
+         <p>{{comment.date | date:"MM/dd/yyyy 'at' h:mma"}}</p>
          <p>Author: {{comment.commentAuthor}}</p>
          <p>Comment: {{comment.comment}}</p>
        </div>
