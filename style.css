@@ -2,6 +2,10 @@
   font-family: 'Open Sans';
 }
 
+body{
+  overflow-x: hidden;
+}
+
 .header{
   background-color: #CEE3F8;
   padding: 1px 0px 25px 20px;
