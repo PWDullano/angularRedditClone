@@ -15,6 +15,12 @@
     <div class ='search'>
       <i class="fa fa-plus" id='plusIcon'ng-click="ToggleForm()">Submit Post</i>
       <input class= 'searchBar' type="text" ng-model="pizzle.$" placeholder='Search'>
+      <select class="dropDown" name="dropDown" ng-model='sortBy'>
+        <option value="selected">--- Select ----</option>
+        <option value="-votes">Votes</option>
+        <option value="date">Date</option>
+        <option value="title">Title</option>
+      </select>
     </div>
   </nav>
 
@@ -36,10 +42,10 @@
    </form>
  </div>
 
- <div class='posts' ng-repeat = "post in posts | filter:pizzle | orderBy:'-votes'">
+ <div class='posts' ng-repeat = "post in posts | filter:pizzle | orderBy:'-votes'| orderBy:sortBy ">
    <img src='{{post.image}}'>
    <p class='author'>By {{post.author}}</p>
-   <p class='postTitle'>{{post.title}} | {{post.votes | number}}
+   <p class='postTitle'>{{post.title}} | <span ng-class='(changeColor(post))'> {{post.votes | number}} </span>
      <i ng-click='post.votes = post.votes +1' class="fa fa-level-up"></i>
      <i ng-click='post.votes = post.votes -1' class="fa fa-level-down"></i>
    </p>
@@ -61,7 +67,7 @@
          </form>
        </div>
        <div id ='showComments'ng-show='showComments' ng-repeat = 'comment in comments'>
-         <p>{{comment.date | date:"MM/dd/yyyy 'at' h:mma"}}</p>
+         <p>{{comment.date}}</p>
          <p>Author: {{comment.commentAuthor}}</p>
          <p>Comment: {{comment.comment}}</p>
        </div>

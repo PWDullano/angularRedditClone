@@ -93,3 +93,11 @@ img{
   padding-left: 10px;
   width: 50vw;
 }
+
+.upVotes{
+  color: green;
+}
+
+.downVotes{
+  color: red;
+}

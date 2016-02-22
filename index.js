@@ -10,6 +10,16 @@ app.controller("MyController", function($scope){
    $scope.showForm = !$scope.showForm;
  }
 
+ $scope.changeColor = function(post){
+   if(post.votes > 0){
+     return 'upVotes'
+   } else if (post.votes < 0){
+     return 'downVotes'
+   } else {
+     return 'zero'
+   }
+ }
+
  $scope.submitPost = function(){
    var post = {};
    post.votes = 0
@@ -43,7 +53,7 @@ app.controller("commentController", function($scope){
 
   $scope.submitComment = function(){
     var comment = {};
-    comment.date = moment().subtract(6, 'days').calendar();
+    comment.date = moment().calendar();
     comment.commentAuthor = $scope.commentAuthor
     comment.comment = $scope.comment
     $scope.comments.push(comment);
