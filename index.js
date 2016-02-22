@@ -1,4 +1,4 @@
-var app = angular.module("patrick", []);
+var app = angular.module("patrick", ['ngAnimate']);
 
 
 app.controller("MyController", function($scope){

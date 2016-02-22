@@ -6,6 +6,25 @@ body{
   overflow-x: hidden;
 }
 
+.ng-enter {
+  animation: fadeInRight .5s;
+}
+
+.ng-leave {
+  animation: fadeOutRight .5s;
+}
+
+.ng-hide {
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+.ng-hide-remove {
+  transition-delay: 0.2s;
+  transition-duration:0;
+  animation: fadeInRight .5s;
+}
+
 .header{
   background-color: #CEE3F8;
   padding: 1px 0px 25px 20px;
@@ -59,7 +78,6 @@ img{
   padding-right: 10px;
   border-radius: 3px;
   float: left;
-  border: 1px solid black;
 }
 
 .author{
