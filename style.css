@@ -34,7 +34,6 @@ body{
   font-size: 15px;
 }
 
-
 .search{
   position: relative;
   left: 170px;
@@ -61,12 +60,13 @@ form{
   background-color: #EFF7FF;
   border-radius: 5px;
   width: 79.6vw;
+  height: auto;
   margin-left: 10vw;
   margin-top: 20px;
 }
 
 .newComments{
-  padding-left: 24.5vw;
+  padding-left: 26.5vw;
 }
 
 img{

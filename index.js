@@ -12,9 +12,8 @@ app.controller("MyController", function($scope){
 
  $scope.submitPost = function(){
    var post = {};
-   var timeStamp = Date.now();
    post.votes = 0
-   post.date = timeStamp
+   post.date = moment().calendar();
    post.title = $scope.title
    post.author = $scope.author
    post.image = $scope.image
@@ -44,9 +43,7 @@ app.controller("commentController", function($scope){
 
   $scope.submitComment = function(){
     var comment = {};
-    var timeStamp = Date.now();
-    comment.date = timeStamp
-    comment.commentNumber = 0;
+    comment.date = moment().subtract(6, 'days').calendar();
     comment.commentAuthor = $scope.commentAuthor
     comment.comment = $scope.comment
     $scope.comments.push(comment);

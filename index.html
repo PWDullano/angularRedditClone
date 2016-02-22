@@ -14,25 +14,25 @@
     <h2>Reddit Clone</h2>
     <div class ='search'>
       <i class="fa fa-plus" id='plusIcon'ng-click="ToggleForm()">Submit Post</i>
-      <input class= 'searchBar' type="text" ng-model="pizzle.title" placeholder='Search'>
+      <input class= 'searchBar' type="text" ng-model="pizzle.$" placeholder='Search'>
     </div>
   </nav>
 
  <div ng-show="showForm">
-   <form ng-submit="submitPost()">
+   <form ng-submit="submitPost()" name='form'>
      Title<br>
-     <input class=postForm type="text" ng-model="title" placeholder="Title" required>
+     <input class=postForm type="text" ng-model="title" placeholder="Title" ng-required='true'>
      <br>
      Author<br>
-     <input type="text" class=postForm ng-model="author" placeholder="Author" required>
+     <input type="text" class=postForm ng-model="author" placeholder="Author" ng-required='true'>
      <br>
      Image URL<br>
-     <input type="text" class=postForm ng-model="image" placeholder="Image URL" required>
+     <input type="text" class=postForm ng-model="image" placeholder="Image URL" ng-required='true'>
      <br>
      Description<br>
-     <input type="text" class=postForm ng-model="description" placeholder="Description" required>
+     <input type="text" class=postForm ng-model="description" placeholder="Description" ng-required='true'>
      <br>
-     <input type="submit" ng-click='ToggleForm()' value='Submit Post!'>
+     <input type="submit" ng-click='ToggleForm()' value='Submit Post!' ng-disabled='form.$invalid'>
    </form>
  </div>
 
@@ -46,18 +46,18 @@
    <p class='postDescription'>{{post.description}}</p>
    <div>
      <div ng-controller='commentController'>
-       <i class="fa fa-calendar" id='calendarIcon'>{{post.date | date:"MM/dd/yyyy 'at' h:mma"}} |</i>
-       <i ng-click='ToggleComment()' class="fa fa-comments">comments | {{comment.commentNumber | number}}</i>
+       <i class="fa fa-calendar" id='calendarIcon'>{{post.date}} |</i>
+       <i ng-click='ToggleComment()' class="fa fa-comments">{{comments.length}} {{comments.length ==1?" Comment":" Comments"}} |</i>
        <i class="fa fa-pencil" ng-click="ToggleCommentForm()">add comment</i>
        <div class='newComments' ng-show="newComments">
-         <form ng-submit="submitComment()">
+         <form ng-submit="submitComment()" name='form'>
            Author<br>
-           <input type="text" ng-model="commentAuthor" placeholder="Username" required>
+           <input type="text" ng-model="commentAuthor" placeholder="Username" ng-required='true'>
            <br>
            Text<br>
-           <input type="text" ng-model="comment" placeholder="Comment text" required>
+           <input type="text" ng-model="comment" placeholder="Comment text" ng-required='true'>
            <br>
-           <input type="submit" ng-click='ToggleCommentForm()' value='Submit Comment!'>
+           <input type="submit" ng-click='ToggleCommentForm()' value='Submit Comment!' ng-disabled='form.$invalid'>
          </form>
        </div>
        <div id ='showComments'ng-show='showComments' ng-repeat = 'comment in comments'>
@@ -73,6 +73,7 @@
  </div>
  <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular.js"></script>
  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.js"></script>
+ <script type="text/javascript" src='http://momentjs.com/downloads/moment.min.js'></script>
  <script type="text/javascript" src="index.js"></script>
   </body>
  </html>
