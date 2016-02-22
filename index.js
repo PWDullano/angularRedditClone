@@ -5,6 +5,8 @@ app.controller("MyController", function($scope){
 
  $scope.posts = [];
  $scope.showForm = false;
+ $scope.newComments = false;
+ $scope.showComments = false;
 
  $scope.ToggleForm = function(){
    $scope.showForm = !$scope.showForm;
@@ -22,6 +24,7 @@ app.controller("MyController", function($scope){
 
  $scope.submitPost = function(){
    var post = {};
+   post.comments = []
    post.votes = 0
    post.date = moment().calendar();
    post.title = $scope.title
@@ -34,31 +37,23 @@ app.controller("MyController", function($scope){
    $scope.author = null;
    $scope.image = null;
    $scope.description = null;
+   $scope.commentAuthor = null;
+   $scope.textWall = null;
+ }
+
+ $scope.ToggleCommentForm = function(){
+   $scope.newComments = !$scope.newComments;
+ }
+
+ $scope.ToggleComment = function(){
+   $scope.showComments = !$scope.showComments;
+ }
+
+ $scope.submitComment = function(post, commentAuthor, textWall){
+   var comment = {};
+   comment.date = moment().calendar();
+   comment.commentAuthor = commentAuthor
+   comment.textWall = textWall
+   post.comments.push(comment);
  }
 });
-
-app.controller("commentController", function($scope){
-
-  $scope.comments = []
-  $scope.newComments = false;
-  $scope.showComments = false;
-
-  $scope.ToggleCommentForm = function(){
-    $scope.newComments = !$scope.newComments;
-  }
-
-  $scope.ToggleComment = function(){
-    $scope.showComments = !$scope.showComments;
-  }
-
-  $scope.submitComment = function(){
-    var comment = {};
-    comment.date = moment().calendar();
-    comment.commentAuthor = $scope.commentAuthor
-    comment.comment = $scope.comment
-    $scope.comments.push(comment);
-    console.log($scope.comments);
-    $scope.commentAuthor = null;
-    $scope.comment = null;
-  }
-})

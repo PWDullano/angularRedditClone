@@ -51,28 +51,24 @@
    </p>
    <p class='postDescription'>{{post.description}}</p>
    <div>
-     <div ng-controller='commentController'>
-       <i class="fa fa-calendar" id='calendarIcon'>{{post.date}} |</i>
-       <i ng-click='ToggleComment()' class="fa fa-comments">{{comments.length}} {{comments.length ==1?" Comment":" Comments"}} |</i>
-       <i class="fa fa-pencil" ng-click="ToggleCommentForm()">add comment</i>
-       <div class='newComments' ng-show="newComments">
-         <form ng-submit="submitComment()" name='form'>
-           Author<br>
-           <input type="text" ng-model="commentAuthor" placeholder="Username" ng-required='true'>
-           <br>
-           Text<br>
-           <input type="text" ng-model="comment" placeholder="Comment text" ng-required='true'>
-           <br>
-           <input type="submit" ng-click='ToggleCommentForm()' value='Submit Comment!' ng-disabled='form.$invalid'>
-         </form>
-       </div>
-       <div id ='showComments'ng-show='showComments' ng-repeat = 'comment in comments'>
-         <p>{{comment.date}}</p>
-         <p>Author: {{comment.commentAuthor}}</p>
-         <p>Comment: {{comment.comment}}</p>
-       </div>
-    </div>
-
+     <i class="fa fa-calendar" id='calendarIcon'>{{post.date}} |</i>
+     <i ng-click='ToggleComment()' class="fa fa-comments">{{post.comments.length}} {{comments.length ==1?" Comment":" Comments"}} |</i>
+     <i class="fa fa-pencil" ng-click="ToggleCommentForm()">add comment</i>
+     <div class='newComments' ng-show="newComments">
+       <form ng-submit="submitComment(post, commentAuthor, textWall)" name='form'>
+         Author<br>
+         <input type="text" ng-model="commentAuthor" placeholder="Username" ng-required='true'>
+         <br>
+         Text<br>
+         <input type="text" ng-model="textWall" placeholder="Comment text" ng-required='true'>
+         <br>
+         <input type="submit" ng-click='ToggleCommentForm()' value='Submit Comment!' ng-disabled='form.$invalid'>
+       </form>
+     </div>
+     <div id ='showComments'ng-show='showComments' ng-repeat = 'comment in post.comments'>
+       <p>{{comment.date}}</p>
+       <p>{{comment.commentAuthor}} - {{comment.textWall}}</p>
+     </div>
    </div>
 
    <hr>
