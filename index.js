@@ -5,12 +5,18 @@ app.controller("MyController", function($scope){
 
  $scope.posts = [];
  $scope.showForm = false;
- $scope.newComments = false;
- $scope.showComments = false;
 
  $scope.ToggleForm = function(){
    $scope.showForm = !$scope.showForm;
  }
+
+  $scope.ToggleCommentForm = function(post){
+    post.newComments = !post.newComments;
+  }
+
+  $scope.ToggleComment = function(post){
+    post.showComments = !post.showComments;
+  }
 
  $scope.changeColor = function(post){
    if(post.votes > 0){
@@ -37,16 +43,8 @@ app.controller("MyController", function($scope){
    $scope.author = null;
    $scope.image = null;
    $scope.description = null;
-   $scope.commentAuthor = null;
-   $scope.textWall = null;
- }
-
- $scope.ToggleCommentForm = function(){
-   $scope.newComments = !$scope.newComments;
- }
-
- $scope.ToggleComment = function(){
-   $scope.showComments = !$scope.showComments;
+   post.newComments = false;
+   post.showComments = false;
  }
 
  $scope.submitComment = function(post, commentAuthor, textWall){
